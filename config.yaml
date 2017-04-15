@@ -1,0 +1,48 @@
+baseurl: https://hervematysiak.eu/
+languageCode: en-us
+title: Herve-M Blog's
+theme: "hyde-14"
+title: "hervematysiak.eu"
+PygmentsCodeFences: false
+
+author:
+    name: "MATYSIAK Hervé"
+    github: "Herve-M"
+    gravatar: "1d9e12d64b161ec8c7c637e23a34e2d8"
+    linkedin: "hervematysiak"
+    twitter: "hervemathy"
+    email: "http://www.google.com/recaptcha/mailhide/d?k=01nZzJSkE0MgF1i9rdQDTMRA==&c=BrNTwam0QHvb6xhdscGr8F1djeFbqr8HV6RzFq6DQhw="
+
+menu:
+  main:
+    - Name: "My CV"
+      Identifier: "cv:en"
+      URL: "https://cloud.hervematysiak.eu/s/axY8Oy1aTCx1I8V"
+      Weight: 10
+
+params:
+  ### Global
+  description: "Yet another F/LOSS Developer & Thinker"
+  ### Will display in sidebar as '© 2010-2017' for example
+  since: "2010"
+
+  ### Resources that have been / will be minified before deployment
+  minified:
+    - css
+  ### Available for social: 'open-graph', 'google-news', 'schema' and 'twitter-summary-card'
+  social:
+    - open-graph
+    - twitter-summary-card
+    - schema
+  ### Theme
+  layoutReverse: false
+  # themeColor: "theme-base-09"
+  rss: true
+
+permalinks:
+  blog: "/:year/:month/:slug/"
+  pages: "/:slug/"
+
+taxonomies:
+  category: "categories"
+  tag: "tags"

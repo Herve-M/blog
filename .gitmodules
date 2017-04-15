@@ -1,0 +1,3 @@
+[submodule "themes/hyde-14"]
+	path = themes/hyde-14
+	url = git@github.com:Herve-M/hyde-14.git
