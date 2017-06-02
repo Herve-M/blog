@@ -37,12 +37,12 @@ function versions() {
 function build() {
   if [ $1 = "beta" ]; then
     displayAndExec "Building site            " "hugo -b https://beta.hervematysiak.eu/ --buildDrafts --buildExpired --buildFuture --cleanDestinationDir"
-    displayAndExec "Minifing HTML            " "html-minifier -c html-minifier.conf --input-dir public/ --output-dir public/ --file-ext html"
   elif [ $1 = "site" ]; then
     displayAndExec "Building site            " "hugo -b https://hervematysiak.eu/ --buildExpired --cleanDestinationDir"
   else
     displayErrorAndExit 1 "No action defined for $1"
   fi
+  displayAndExec "Minifing HTML            " "html-minifier -c html-minifier.conf --input-dir public/ --output-dir public/ --file-ext html"
 }
 
 function sync() {
