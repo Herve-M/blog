@@ -1,8 +1,10 @@
 ---
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
 description: ""
 tags: ["",""]
 categories: ["",""]
 slug: ""
+date: {{ .Date }}
 ---
 
 
