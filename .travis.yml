@@ -1,16 +1,17 @@
-dist: trusty
+dist: bionic
 sudo: false
 language: go
 go:
-- 1.8.1
+- stable
+
 addons:
   ssh_known_hosts:
   - beta.hervematysiak.eu
   - hervematysiak.eu
 
 install:
-  - go get github.com/kardianos/govendor
-  - govendor get github.com/spf13/hugo
+  - go get github.com/spf13/hugo
+  - npm install html-minifier -g
 
 before_deploy:
   - ./.travis/before_deploy.sh
