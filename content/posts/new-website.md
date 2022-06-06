@@ -5,6 +5,9 @@ date: "2017-04-17"
 slug: ""
 categories: ["Personal"]
 tags: ["hugo"]
+license: "cc-by-4.0"
+linkToMarkdown: true
+summary:  "Read more abnout my bad english" 
 ---
 
 ## History

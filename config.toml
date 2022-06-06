@@ -1,0 +1,54 @@
+baseURL = 'http://blog.hervematysiak.org/'
+languageCode = 'en-us'
+title = "Herve-M Blog's" 
+
+theme = "FeelIt"
+
+[author]
+    name = "MATYSIAK Hervé"
+    github = "Herve-M"
+    gravatar = "1d9e12d64b161ec8c7c637e23a34e2d8"
+    linkedin = "hervematysiak"
+    twitter = "hervemathy"
+    email= "http://www.google.com/recaptcha/mailhide/d?k=01nZzJSkE0MgF1i9rdQDTMRA==&c=BrNTwam0QHvb6xhdscGr8F1djeFbqr8HV6RzFq6DQhw="
+
+[params]
+  version = "1.0.X"
+
+[params.home.posts]
+  imagePreview = true
+
+[languages]
+  [languages.en]
+    weight = 1
+    languageCode = "en"
+    languageName = "English"
+    hasCJKLanguage = false
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "posts"
+        # you can add extra information before the name (HTML format is supported), such as icons
+        pre = ""
+        # you can add extra information after the name (HTML format is supported), such as icons
+        post = ""
+        name = "Posts"
+        url = "/posts/"
+        # title will be shown when you hover on this menu link.
+        title = ""
+        weight = 1
+      [[languages.en.menu.main]]
+        identifier = "tags"
+        pre = ""
+        post = ""
+        name = "Tags"
+        url = "/tags/"
+        title = ""
+        weight = 2
+      [[languages.en.menu.main]]
+        identifier = "categories"
+        pre = ""
+        post = ""
+        name = "Categories"
+        url = "/categories/"
+        title = ""
+        weight = 3

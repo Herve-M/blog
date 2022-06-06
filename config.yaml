@@ -2,7 +2,6 @@ baseurl: https://hervematysiak.eu/
 languageCode: en-us
 title: Herve-M Blog's
 theme: "hyde-14"
-title: "hervematysiak.eu"
 PygmentsCodeFences: false
 
 author:
