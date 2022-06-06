@@ -28,7 +28,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Build for DEV
-        run: hugo -b https://ambitious-smoke-0c4bb6103-develop.1.azurestaticapps.net --buildDrafts --buildExpired --buildFuture
+        run: hugo -b https://ambitious-smoke-0c4bb6103-develop.westeurope.1.azurestaticapps.net --buildDrafts --buildExpired --buildFuture
         if: ${{ github.ref == 'refs/heads/develop' }}
 
       - name: Deploy
