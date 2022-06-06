@@ -18,6 +18,9 @@ theme = "FeelIt"
 [params.home.posts]
   imagePreview = true
 
+[params.cdn]
+  data = "jsdelivr.yml"
+
 [languages]
   [languages.en]
     weight = 1
