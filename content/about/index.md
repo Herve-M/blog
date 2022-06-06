@@ -2,7 +2,6 @@
 title: "About Me"
 description: "More about this site and his author."
 date: "2017-04-17"
-slug: ""
 menu: "main"
 ---
 
