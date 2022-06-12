@@ -24,11 +24,11 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo -b https://ambitious-smoke-0c4bb6103.1.azurestaticapps.net --buildExpired --minify
+        run: hugo -b https://hervematysiak.eu --buildExpired --minify
         if: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Build (staging)
-        run: hugo -b https://delightful-glacier-08b3c7503.1.azurestaticapps.net --buildDrafts --buildExpired --buildFuture
+        run: hugo -b https://beta.hervematysiak.eu --buildDrafts --buildExpired --buildFuture
         if: ${{ github.ref == 'refs/heads/develop' }}
 
       - name: Deploy
