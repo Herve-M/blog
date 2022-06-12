@@ -3,13 +3,12 @@ title: "Automation 101 – Making it possible"
 description: ""
 date: "2020-07-30"
 slug: ""
-categories: []
+categories: [".NET Automation"]
 tags: [".net"]
 license: "cc-by-4.0"
 summary:  "Read more abnout my bad english" 
 featuredImage: "featured-image.jpg"
 featuredImagePreview: "featured-image-preview.jpg"
-categories: [".NET Automation"]
 ---
 
 When we talk about automation in DevOps, we directly think about automating infrastructure and deployment. Alongside with all the well-known tooling as Kubernetes, Ansible, Docker, etc. But automation doesn’t stop here and even begin far way behind, directly at the Developer and Engineer side! Today we will see how we can introduce some automation for a .Net Core project / team. To note this is a share of vision not yet a guideline 😉   

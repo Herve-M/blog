@@ -3,13 +3,12 @@ title: "Automation 102 – How to make it"
 description: ""
 date: "2020-10-30"
 slug: ""
-categories: []
+categories: [".NET Automation"]
 tags: [".net"]
 license: "cc-by-4.0"
 summary:  "Read more abnout my bad english" 
 featuredImage: "featured-image.jpg"
 featuredImagePreview: "featured-image-preview.jpg"
-categories: [".NET Automation"]
 ---
 
 In the last article about Automation ([101]({{< ref "/net-automation101" >}})), I presented you quickly how Microsoft managed across their teams to follow a “well-understood and consistent mechanisms to consume, update, and share engineering [culture]”. Thankfully to the Open Sourcing of the code but not only, the opening of their process. Now that we know the what and partially the how, can we reproduce something alike? Welcome to this guided tour :-)

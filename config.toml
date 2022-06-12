@@ -6,20 +6,146 @@ theme = "FeelIt"
 
 [author]
     name = "MATYSIAK Hervé"
-    github = "Herve-M"
-    gravatar = "1d9e12d64b161ec8c7c637e23a34e2d8"
-    linkedin = "hervematysiak"
-    twitter = "hervemathy"
     email= "http://www.google.com/recaptcha/mailhide/d?k=01nZzJSkE0MgF1i9rdQDTMRA==&c=BrNTwam0QHvb6xhdscGr8F1djeFbqr8HV6RzFq6DQhw="
+    link = ""
 
 [params]
   version = "1.0.X"
+  [params.page.share]
+    enable = true
+    Twitter = true
+    Facebook = false
+    Linkedin = true
+    Whatsapp = false
+    Pinterest = false
+    Tumblr = false
+    HackerNews = true
+    Reddit = true
+    VK = false
+    Buffer = false
+    Xing = false
+    Line = false
+    Instapaper = false
+    Pocket = false
+    Digg = false
+    Stumbleupon = false
+    Flipboard = false
+    Weibo = false
+    Renren = false
+    Myspace = false
+    Blogger = false
+    Baidu = false
+    Odnoklassniki = false
+    Evernote = false
+    Skype = false
+    Trello = false
+    Mix = false
+  [params.social]
+    GitHub = "https://github.com/Herve-M/"
+    Linkedin = "https://www.linkedin.com/in/hervematysiak/"
+    Twitter = "https://twitter.com/HerveMATHY"
+    Instagram = ""
+    Facebook = ""
+    Telegram = ""
+    Medium = ""
+    Gitlab = ""
+    Youtubelegacy = ""
+    Youtubecustom = ""
+    Youtubechannel = ""
+    Tumblr = ""
+    Quora = ""
+    Keybase = ""
+    Pinterest = ""
+    Reddit = ""
+    Codepen = ""
+    FreeCodeCamp = ""
+    Bitbucket = ""
+    Stackoverflow = ""
+    Weibo = ""
+    Odnoklassniki = ""
+    VK = ""
+    Flickr = ""
+    Xing = ""
+    Snapchat = ""
+    Soundcloud = ""
+    Spotify = ""
+    Bandcamp = ""
+    Paypal = ""
+    Fivehundredpx = ""
+    Mix = ""
+    Goodreads = ""
+    Lastfm = ""
+    Foursquare = ""
+    Hackernews = ""
+    Kickstarter = ""
+    Patreon = ""
+    Steam = ""
+    Twitch = ""
+    Strava = ""
+    Skype = ""
+    Whatsapp = ""
+    Zhihu = ""
+    Douban = ""
+    Angellist = ""
+    Slidershare = ""
+    Jsfiddle = ""
+    Deviantart = ""
+    Behance = ""
+    Dribbble = ""
+    Wordpress = ""
+    Vine = ""
+    Googlescholar = ""
+    Researchgate = ""
+    Thingiverse = ""
+    Devto = ""
+    Gitea = ""
+    XMPP = ""
+    Matrix = ""
+    Bilibili = ""
+    Email = ""
+    Resume = "" 
+    xda = ""
+    RSS = true
+    [params.social.Mastodon]
+      id = "@Herve_M"
+      prefix = "https://fosstodon.org/"
+    
+  [params.cdn]
+    data = "jsdelivr.yml"
+
+  [params.compatibility]
+    # whether to use Polyfill.io to be compatible with older browsers
+    polyfill = false
+    # whether to use object-fit-images to be compatible with older browsers
+    objectFit = false
 
 [params.home.posts]
   imagePreview = true
 
-[params.cdn]
-  data = "jsdelivr.yml"
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      # whether to use HTML tags directly in the document
+      unsafe = true
+  # Table Of Contents settings
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
 
 [languages]
   [languages.en]
