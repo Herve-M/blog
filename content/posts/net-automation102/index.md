@@ -147,7 +147,7 @@ After having installed everything you can go to the `Solution > right click > Ma
 The only things know to document in our Team charter is to install at minima the Extension Manager 2019 extension and that it’s.
 Of course each extension has it own set of settings that you can export/save, be free to do so.
 
-{{< figure src="vsview-customaddonsetting" alt="Cmdline screenshot showing result of previous snippet" >}} 
+{{< figure src="vsview-customaddonsetting.png" alt="Cmdline screenshot showing result of previous snippet" >}} 
 <br>
 #### Adding a \`one for all\` configuration file
 
