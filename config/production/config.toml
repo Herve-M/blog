@@ -1,0 +1,4 @@
+[params.analytics]
+    enable = true
+    [params.analytics.plausible]
+      dataDomain = "hervematysiak.eu"

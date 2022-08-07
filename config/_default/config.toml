@@ -1,4 +1,4 @@
-baseURL = 'http://blog.hervematysiak.org/'
+baseURL = 'http://hervematysiak.org/'
 languageCode = 'en-us'
 title = "Herve-M Blog's" 
 
@@ -121,6 +121,9 @@ theme = "FeelIt"
 
 [params.home.posts]
   imagePreview = true
+
+[params.analytics]
+    enable = false
 
 [markup]
   [markup.highlight]

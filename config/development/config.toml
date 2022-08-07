@@ -1,0 +1,7 @@
+baseURL = 'https://beta.hervematysiak.org/'
+title = "[BETA] Herve-M Blog's" 
+
+[params.analytics]
+    enable = true
+    [params.analytics.plausible]
+      dataDomain = "beta.hervematysiak.eu"
