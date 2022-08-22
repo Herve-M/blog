@@ -11,7 +11,7 @@ theme = "FeelIt"
 
 [params]
   version = "1.0.X"
-  [params.page.share]
+  [params.page.share]    
     enable = true
     Twitter = true
     Facebook = false
@@ -40,6 +40,8 @@ theme = "FeelIt"
     Skype = false
     Trello = false
     Mix = false
+    [params.page.comment]
+      enable = false
   [params.social]
     GitHub = "https://github.com/Herve-M/"
     Linkedin = "https://www.linkedin.com/in/hervematysiak/"
@@ -123,7 +125,7 @@ theme = "FeelIt"
   imagePreview = true
 
 [params.analytics]
-    enable = false
+  enable = false
 
 [markup]
   [markup.highlight]
