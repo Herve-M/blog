@@ -1,0 +1,6 @@
+{
+    "globalHeaders": {
+        "access-control-allow-origin": "https://beta.hervematysiak.com",
+        "content-security-policy": "frame-ancestors 'self'; child-src *.youtube.com platform.twitter.com *.hervematysiak.com giscus.app; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self'"
+    }
+}

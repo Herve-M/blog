@@ -27,9 +27,17 @@ jobs:
         run: hugo --environment production --buildExpired --minify
         if: ${{ github.ref == 'refs/heads/master' }}
 
+      - name: Copy AzureStaticAppConfig
+        run: mv ./static/production/staticwebapp.config.json ./static/staticwebapp.config.json
+        if: ${{ github.ref == 'refs/heads/master' }}
+
       - name: Build (staging)
         run: hugo --environment development --buildDrafts --buildExpired --buildFuture
         if: ${{ github.ref == 'refs/heads/develop' }}
+
+      - name: Copy AzureStaticAppConfig (staging)
+        run: mv ./static/development/staticwebapp.config.json ./static/staticwebapp.config.json
+        if: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Deploy
         if: ${{ github.ref == 'refs/heads/master' }}
