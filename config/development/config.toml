@@ -1,6 +1,8 @@
 baseURL = 'https://beta.hervematysiak.org/'
 title = "[BETA] Herve-M Blog's" 
 
+theme = "LoveIt"
+
 [params.analytics]
     enable = true
     [params.analytics.plausible]
