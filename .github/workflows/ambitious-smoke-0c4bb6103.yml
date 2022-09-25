@@ -32,11 +32,11 @@ jobs:
         if: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Build (staging)
-        run: hugo --environment development --buildDrafts --buildExpired --buildFuture
+        run: hugo --environment staging --buildDrafts --buildExpired --buildFuture
         if: ${{ github.ref == 'refs/heads/develop' }}
 
       - name: Copy AzureStaticAppConfig (staging)
-        run: mv ./config/development/staticwebapp.config.json ./public/staticwebapp.config.json
+        run: mv ./config/staging/staticwebapp.config.json ./public/staticwebapp.config.json
         if: ${{ github.ref == 'refs/heads/develop' }}
 
       - name: Deploy
