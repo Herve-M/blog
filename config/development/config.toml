@@ -1,0 +1,19 @@
+baseURL = 'https://beta.hervematysiak.org/'
+title = "[BETA] Herve-M Blog's" 
+
+theme = "LoveIt"
+
+[params.analytics]
+    enable = true
+    [params.analytics.plausible]
+      dataDomain = "beta.hervematysiak.eu"
+
+[params.page]
+  [params.page.comment]
+    enable = true
+    [params.page.comment.giscus]
+    enable = true
+    repo = "Herve-M/blog"
+    repoId = "MDEwOlJlcG9zaXRvcnk4MDkzMzQyNg=="
+    category = "[BETA] Annoucements"
+    categoryId = "DIC_kwDOBNLyMs4CQ92X"

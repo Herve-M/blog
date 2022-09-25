@@ -24,11 +24,11 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo -b https://hervematysiak.eu --buildExpired --minify
+        run: hugo --environment production --buildExpired --minify
         if: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Build (staging)
-        run: hugo -b https://beta.hervematysiak.eu --buildDrafts --buildExpired --buildFuture
+        run: hugo --environment development --buildDrafts --buildExpired --buildFuture
         if: ${{ github.ref == 'refs/heads/develop' }}
 
       - name: Deploy

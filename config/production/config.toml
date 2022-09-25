@@ -1,0 +1,14 @@
+[params.analytics]
+    enable = true
+    [params.analytics.plausible]
+      dataDomain = "hervematysiak.eu"
+
+[params.page]
+  [params.page.comment]
+    enable = true
+    [params.page.comment.giscus]
+    enable = true
+    repo = "Herve-M/blog"
+    repoId = "MDEwOlJlcG9zaXRvcnk4MDkzMzQyNg=="
+    category = "General"
+    categoryId = "DIC_kwDOBNLyMs4CQq_3"
