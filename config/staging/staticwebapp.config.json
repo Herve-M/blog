@@ -1,6 +1,6 @@
 {
     "globalHeaders": {
         "access-control-allow-origin": "https://beta.hervematysiak.eu",
-        "content-security-policy": "frame-ancestors 'self'; child-src *.youtube.com platform.twitter.com *.hervematysiak.eu giscus.app; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self'"
+        "content-security-policy": "frame-ancestors 'self'; frame-src giscus.app; connect-src 'self' statistic.hervematysiak.eu giscus.app; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net giscus.app; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self'; script-src 'self' 'unsafe-inline' statistic.hervematysiak.eu cdn.jsdelivr.net giscus.app;"
     }
 }
