@@ -7,6 +7,7 @@ title = "[BETA] Herve-M Blog's"
       dataDomain = "beta.hervematysiak.eu"
 
 [params.page]
+  cdnfontawesome = true
   [params.page.comment]
     enable = true
     [params.page.comment.giscus]
