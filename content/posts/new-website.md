@@ -8,6 +8,7 @@ tags: ["hugo"]
 license: "cc-by-4.0"
 linkToMarkdown: true
 summary:  "Read more abnout my bad english" 
+hiddenFromHomePage: true
 ---
 
 ## History
