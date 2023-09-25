@@ -103,7 +103,7 @@ And that's it, you can exit the application "enter".
 You must restart your computer for the changes to take effect.
 If you have done everything correctly, you should normally boot into your operating system.
 
-{{< figure src="arti_dyna2base-baseHDD.png" alt="Windows Disk Management overview of main basic drive" caption="Partitioning utility should indicate from now one a basic disk" >}}
+{{< image src="arti_dyna2base-baseHDD.png" alt="Windows Disk Management overview of main basic drive" caption="Partitioning utility should indicate from now one a basic disk" >}}
 
 ## Related links
 
