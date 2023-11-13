@@ -4,6 +4,8 @@ title = "Herve-M Blog's"
 
 theme = "FeelIt"
 
+enableRobotsTXT= true
+
 [author]
     name = "MATYSIAK Hervé"
     email= "http://www.google.com/recaptcha/mailhide/d?k=01nZzJSkE0MgF1i9rdQDTMRA==&c=BrNTwam0QHvb6xhdscGr8F1djeFbqr8HV6RzFq6DQhw="
