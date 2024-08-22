@@ -1,0 +1,3 @@
+/*
+  Access-Control-Allow-Origin: "beta.hervematysiak.eu"
+  Content-Security-Policy: frame-src 'self' giscus.app; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net giscus.app; frame-ancestors 'none'; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self' cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' statistic.hervematysiak.eu cdn.jsdelivr.net giscus.app; upgrade-insecure-requests;
