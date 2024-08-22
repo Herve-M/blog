@@ -1,3 +1,6 @@
 /*
   Access-Control-Allow-Origin: "hervematysiak.eu"
   Content-Security-Policy: frame-src 'self' giscus.app; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net giscus.app; frame-ancestors 'none'; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self' cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' statistic.hervematysiak.eu cdn.jsdelivr.net giscus.app; upgrade-insecure-requests;
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
