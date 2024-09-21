@@ -1,13 +1,13 @@
-baseURL = 'http://hervematysiak.org/'
+baseURL = 'https://nherve.dev/'
 languageCode = 'en-us'
-title = "Herve-M Blog's" 
+title = "N(H)erve'd powered chronicles"
 
 theme = "FeelIt"
 
 enableRobotsTXT= true
 
 [author]
-    name = "MATYSIAK Hervé"
+    name = "Hervé-M"
     email= "http://www.google.com/recaptcha/mailhide/d?k=01nZzJSkE0MgF1i9rdQDTMRA==&c=BrNTwam0QHvb6xhdscGr8F1djeFbqr8HV6RzFq6DQhw="
     link = ""
 
@@ -160,6 +160,8 @@ enableRobotsTXT= true
     languageCode = "en"
     languageName = "English"
     hasCJKLanguage = false
+    [languages.en.params]
+       description = "Welcome to N(H)erve'd Powered Chronicles—a quirky blend of code, creativity, and (maybe too much) caffeine. Dive into a world where tech meets humor, and every line of code comes with a side of adventure… or possibly disappointment!"
     [languages.en.menu]
       [[languages.en.menu.main]]
         identifier = "posts"

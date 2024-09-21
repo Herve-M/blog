@@ -1,10 +1,10 @@
 baseURL = 'https://beta.hervematysiak.org/'
-title = "[BETA] Herve-M Blog's" 
+title = "[BETA] N(H)erve'd powered chronicles"
 
 [params.analytics]
     enable = true
     [params.analytics.plausible]
-      dataDomain = "beta.hervematysiak.eu"
+      dataDomain = "beta.nherve.dev"
 
 [params.page]
   cdnfontawesome = true
