@@ -17,6 +17,6 @@
     {{- end -}}
     {{- /* Plausible Analytics */ -}}
     {{- with .Site.Params.analytics.plausible.dataDomain -}}
-        {{- dict "Source" "https://statistic.hervematysiak.eu/js/plausible.js" "Async" true "Defer" true "Attr" (. | printf `data-domain="%v"`) | partial "plugin/script.html" -}}
+        {{- dict "Source" "https://statistic.nherve.dev/js/plausible.js" "Async" true "Defer" true "Attr" (. | printf `data-domain="%v"`) | partial "plugin/script.html" -}}
     {{- end -}}
 {{- end -}}
