@@ -1,0 +1,11 @@
+User-agent: *
+Crawl-delay: 5
+Disallow: /images/
+Disallow: /js/
+Disallow: /css/
+Disallow: /offline/
+Disallow: /lib/
+Disallow: /svg/
+Disallow: /page/
+
+Sitemap: {{ "/sitemap.xml" | absLangURL }}
