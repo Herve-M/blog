@@ -7,3 +7,4 @@ elif [ "$CF_PAGES_BRANCH" == "staging" ]; then
 fi
 
 cp config/$CF_PAGES_BRANCH/_headers public/_headers
+cp config/$CF_PAGES_BRANCH/_redirects public/_redirects
