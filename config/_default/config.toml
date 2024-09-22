@@ -8,7 +8,7 @@ enableRobotsTXT= true
 
 [author]
     name = "Hervé-M"
-    email= "http://www.google.com/recaptcha/mailhide/d?k=01nZzJSkE0MgF1i9rdQDTMRA==&c=BrNTwam0QHvb6xhdscGr8F1djeFbqr8HV6RzFq6DQhw="
+    email= "https://mailhide.io/e/Hz13VXLP"
     link = ""
 
 [params]
@@ -46,7 +46,7 @@ enableRobotsTXT= true
       enable = false
   [params.social]
     GitHub = "https://github.com/Herve-M/"
-    Linkedin = "https://www.linkedin.com/in/hervematysiak/"
+    Linkedin = "https://www.linkedin.com/in/hervematysiak"
     Twitter = "https://twitter.com/HerveMATHY"
     Instagram = ""
     Facebook = ""
