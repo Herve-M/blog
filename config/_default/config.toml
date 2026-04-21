@@ -147,7 +147,7 @@ enableRobotsTXT= true
   
   [params.page]
     [params.page.instantpage]
-      enable = true
+      enable = false
 
     [params.page.outdatedArticleReminder]
       enable = true

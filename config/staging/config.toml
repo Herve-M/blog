@@ -1,6 +1,7 @@
 baseURL = 'https://beta.hervematysiak.org/'
 title = "[BETA] N(H)erve'd powered chronicles"
 
+[params]
   [params.cdn]
     data = "jsdelivr.yml"
 
