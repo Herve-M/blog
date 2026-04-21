@@ -1,18 +1,21 @@
 baseURL = 'https://beta.hervematysiak.org/'
 title = "[BETA] N(H)erve'd powered chronicles"
 
-[params.analytics]
+  [params.cdn]
+    data = "jsdelivr.yml"
+
+  [params.analytics]
     enable = true
     [params.analytics.plausible]
-      dataDomain = "beta.nherve.dev"
+      data_domain = "beta.nherve.dev"
+      src = "https://statistics.nherve.dev/js/pa-98XIcVjbN6mNRzymd3all.js"
 
-[params.page]
-  cdnfontawesome = true
-  [params.page.comment]
-    enable = true
-    [params.page.comment.giscus]
-    enable = true
-    repo = "Herve-M/blog"
-    repoId = "MDEwOlJlcG9zaXRvcnk4MDkzMzQyNg=="
-    category = "[BETA] Annoucements"
-    categoryId = "DIC_kwDOBNLyMs4CQ92X"
+  [params.page]
+    [params.page.comment]
+      enable = true
+      [params.page.comment.giscus]
+        enable = true
+        dataRepo = "Herve-M/blog"
+        dataRepoId = "MDEwOlJlcG9zaXRvcnk4MDkzMzQyNg=="
+        dataCategory = "[BETA] Annoucements"
+        dataCategoryId = "DIC_kwDOBNLyMs4CQ92X"
