@@ -1,14 +1,19 @@
-[params.analytics]
+[params]
+  [params.cdn]
+    data = "jsdelivr.yml"
+
+  [params.analytics]
     enable = true
     [params.analytics.plausible]
-      dataDomain = "nherve.dev"
+      data_domain = "nherve.dev"
+      src = "https://statistics.nherve.dev/js/pa-z-UQXAQFQR-04FIrpKLpL.js"
 
-[params.page]
-  [params.page.comment]
-    enable = true
-    [params.page.comment.giscus]
-    enable = true
-    repo = "Herve-M/blog"
-    repoId = "MDEwOlJlcG9zaXRvcnk4MDkzMzQyNg=="
-    category = "General"
-    categoryId = "DIC_kwDOBNLyMs4CQq_3"
+  [params.page]
+    [params.page.comment]
+      enable = true
+      [params.page.comment.giscus]
+        enable = true
+        dataRepo = "Herve-M/blog"
+        dataRepoId = "MDEwOlJlcG9zaXRvcnk4MDkzMzQyNg=="
+        dataCategory = "General"
+        dataCategoryId = "DIC_kwDOBNLyMs4CQq_3"

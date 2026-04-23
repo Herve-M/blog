@@ -7,11 +7,12 @@ categories: [".NET Automation"]
 tags: [".NET", "eng-rules" ]
 license: "cc-by-4.0"
 summary:  "" 
+authors: [herve-m]
 featuredImage: "featured-image.jpg"
 featuredImagePreview: "featured-image-preview.jpg"
 ---
 
-In the last article about Automation ([101]({{< ref "/net-automation101" >}})), I presented you quickly how Microsoft managed across their teams to follow a “well-understood and consistent mechanisms to consume, update, and share engineering [culture]”. Thankfully to the Open Sourcing of the code but not only, the opening of their process. Now that we know the what and partially the how, can we reproduce something alike? Welcome to this guided tour 😊
+In the last article about Automation ([101]({{< ref "net-automation101" >}})), I presented you quickly how Microsoft managed across their teams to follow a “well-understood and consistent mechanisms to consume, update, and share engineering [culture]”. Thankfully to the Open Sourcing of the code but not only, the opening of their process. Now that we know the what and partially the how, can we reproduce something alike? Welcome to this guided tour 😊
 
 <!--more-->
 
@@ -34,7 +35,7 @@ First to be able to do automation we need that the [VSC](https://en.wikipedia.or
 * `scripts`: all the scripts used in your solution \(not sql\, powershell \| bacch one\)
 * `tools`: all the source code of tools implemented or used alongside your project
 
-From here we will begin from scratch with a new, empty, repository from TFS: [Automation.Playground](https://tfs.amaris.com/tfs/ITArchitecture/DevOps/_git/Automation.Playground)
+From here we will begin from scratch with a new, empty, repository from TFS: Automation.Playground
 
 #### Creating the base folders
 

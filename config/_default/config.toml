@@ -1,53 +1,32 @@
 baseURL = 'https://nherve.dev/'
-languageCode = 'en-us'
+
+locale = "en"
+defaultContentLanguage = "en"
+hasCJKLanguage = false
+languageCode = 'en-US'
+
 title = "N(H)erve'd powered chronicles"
 
-theme = "FeelIt"
+theme = "DoIt"
 
 enableRobotsTXT= true
 
-[author]
-    name = "Hervé-M"
-    email= "https://mailhide.io/e/Hz13VXLP"
-    link = ""
-
 [params]
-  version = "1.0.X"
-  [params.page.share]    
-    enable = true
-    Twitter = true
-    Facebook = false
-    Linkedin = true
-    Whatsapp = false
-    Pinterest = false
-    Tumblr = false
-    HackerNews = true
-    Reddit = true
-    VK = false
-    Buffer = false
-    Xing = false
-    Line = false
-    Instapaper = false
-    Pocket = false
-    Digg = false
-    Stumbleupon = false
-    Flipboard = false
-    Weibo = false
-    Renren = false
-    Myspace = false
-    Blogger = false
-    Baidu = false
-    Odnoklassniki = false
-    Evernote = false
-    Skype = false
-    Trello = false
-    Mix = false
-    [params.page.comment]
-      enable = false
+  version = "0.4.X"
+  fingerprint = "sha256"
+  enablePWA = false
+
+  # Author config
+  [params.author]
+    name = "Hervé-M"
+    email = "https://mailhide.io/e/Hz13VXLP"
+    gravatarEmail = "herve.matysiak@viacesi.fr"
+
+  # Social config about the author
   [params.social]
-    GitHub = "https://github.com/Herve-M/"
-    Linkedin = "https://www.linkedin.com/in/hervematysiak"
-    Twitter = "https://twitter.com/HerveMATHY"
+    GitHub = "Herve-M"
+    Linkedin = "hervematysiak"
+    Twitter = "HerveMATHY"
     Instagram = ""
     Facebook = ""
     Telegram = ""
@@ -106,28 +85,121 @@ enableRobotsTXT= true
     XMPP = ""
     Matrix = ""
     Bilibili = ""
+    ORCID = ""
+    Liberapay = ""
+    Ko-Fi = ""
+    BuyMeACoffee = ""
+    Linktree = ""
+    QQ = ""
+    QQGroup = ""
     Email = ""
-    Resume = "" 
-    xda = ""
     RSS = true
     [params.social.Mastodon]
       id = "@Herve_M"
       prefix = "https://fosstodon.org/"
-    
+
+  [params.image]
+    # cache remote images for better optimisations
+    cacheRemote = false
+    # Image resizing and optimisation
+    optimise = false
+
+  [params.home]
+    [params.home.profile]
+      enable = true
+      gravatarEmail = "herve.matysiak@viacesi.fr"
+      avatarURL = ""
+      avatarLinkURL = ""
+      title = ""
+      subtitle = ""
+      typeit = false
+      social = true
+      disclaimer = ""
+    [params.home.posts]
+      enable = true
+      paginate = 7
+
+  # Header config
+  [params.header]
+    # theme change mode ("switch", "select")
+    themeChangeMode = "switch"
+    [params.header.title]
+      logo = ""
+      name = "N(H)erve'd powered chronicles"
+      pre = ""
+      post = ""
+      typeit = false
+
+  # Footer config
+  [params.footer]
+    enable = true
+    custom = ''
+    hugo = true
+    # DoIt NEW | 0.2.14 Hosted on (HTML format is supported)
+    # <a title="Github Pages" href="https://docs.github.com/en/pages/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>
+    hostedOn = '<a title="Cloudflare Pages" href="https://pages.cloudflare.com/" target="_blank" rel="noopener noreferrer">Cloudflare Pages</a>'
+    copyright = true
+    author = true
+    since = 2019
+    license = '<a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+  
+  [params.page]
+    [params.page.instantpage]
+      enable = false
+
+    [params.page.outdatedArticleReminder]
+      enable = true
+      reminder = 180
+      warning = 365
+
+    [params.page.toc]
+      enable = true
+      keepStatic = false
+      auto = false
+
+    [params.page.share]    
+      enable = true
+      Twitter = true
+      Facebook = true
+      Linkedin = true
+      Whatsapp = false
+      Pinterest = false
+      Tumblr = false
+      HackerNews = true
+      Reddit = true
+      VK = false
+      Buffer = false
+      Xing = false
+      Line = false
+      Instapaper = false
+      Pocket = false
+      Digg = false
+      Stumbleupon = false
+      Flipboard = false
+      Weibo = false
+      Renren = false
+      Myspace = false
+      Blogger = false
+      Baidu = false
+      Odnoklassniki = false
+      Evernote = false
+      Skype = false
+      Trello = false
+      Mix = false
+      Mastodon = true
+
+    [params.page.comment]
+      enable = false
+  
   [params.cdn]
-    data = "jsdelivr.yml"
+    data = ""
 
   [params.compatibility]
     # whether to use Polyfill.io to be compatible with older browsers
     polyfill = false
-    # whether to use object-fit-images to be compatible with older browsers
-    objectFit = false
 
-[params.home.posts]
-  imagePreview = true
-
-[params.analytics]
-  enable = false
+  [params.analytics]
+    enable = false
 
 [markup]
   [markup.highlight]
@@ -135,7 +207,8 @@ enableRobotsTXT= true
     guessSyntax = true
     lineNos = true
     lineNumbersInTable = true
-    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+    # false is a necessary configuration
+    # (https://github.com/dillonzq/LoveIt/issues/158)
     noClasses = false
   [markup.goldmark]
     [markup.goldmark.extensions]
@@ -154,39 +227,49 @@ enableRobotsTXT= true
     startLevel = 2
     endLevel = 6
 
-[languages]
-  [languages.en]
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Options to make hugo output files
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML", "MarkDown"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    post = ""
+    name = "Posts"
+    url = "/posts/"
+    # title will be shown when you hover on this menu link
+    title = ""
     weight = 1
-    languageCode = "en"
-    languageName = "English"
-    hasCJKLanguage = false
-    [languages.en.params]
-       description = "Welcome to N(H)erve'd Powered Chronicles—a quirky blend of code, creativity, and (maybe too much) caffeine. Dive into a world where tech meets humor, and every line of code comes with a side of adventure… or possibly disappointment!"
-    [languages.en.menu]
-      [[languages.en.menu.main]]
-        identifier = "posts"
-        # you can add extra information before the name (HTML format is supported), such as icons
-        pre = ""
-        # you can add extra information after the name (HTML format is supported), such as icons
-        post = ""
-        name = "Posts"
-        url = "/posts/"
-        # title will be shown when you hover on this menu link.
-        title = ""
-        weight = 1
-      [[languages.en.menu.main]]
-        identifier = "tags"
-        pre = ""
-        post = ""
-        name = "Tags"
-        url = "/tags/"
-        title = ""
-        weight = 2
-      [[languages.en.menu.main]]
-        identifier = "categories"
-        pre = ""
-        post = ""
-        name = "Categories"
-        url = "/categories/"
-        title = ""
-        weight = 3
+  [[menu.main]]
+    identifier = "tags"
+    pre = ""
+    post = ""
+    name = "Tags"
+    url = "/tags/"
+    title = ""
+    weight = 2
+  [[menu.main]]
+    identifier = "categories"
+    pre = ""
+    post = ""
+    name = "Categories"
+    url = "/categories/"
+    title = ""
+    weight = 3
+
+[taxonomies]
+  author = "authors"
+  category = "categories"
+  tag = "tags"
+  series = "series"

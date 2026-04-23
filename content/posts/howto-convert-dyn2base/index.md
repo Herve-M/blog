@@ -2,6 +2,7 @@
 title: "How to convert a dynamic disk to a basic disk without losing data"
 description: ""
 date: "2011-08-22"
+authors: [herve-m]
 slug: ""
 categories: ["HDD"]
 tags: ["how-to"]
