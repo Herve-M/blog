@@ -3,12 +3,15 @@ title: "New Website"
 description: "New website for hervematysiak, moved from Wordpress to Hugo"
 date: "2017-04-17"
 slug: ""
+authors: [herve-m]
 categories: ["Personal"]
 tags: ["hugo"]
 license: "cc-by-4.0"
 linkToMarkdown: true
 summary:  "Read more abnout my bad english" 
 hiddenFromHomePage: true
+hiddenFromSearch: true
+rssFullText: false
 ---
 
 ## History
