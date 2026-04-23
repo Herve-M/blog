@@ -1,4 +1,4 @@
-baseURL = 'https://nherve.dev/'
+baseURL = 'https://nherve.dev'
 
 locale = "en"
 defaultContentLanguage = "en"
