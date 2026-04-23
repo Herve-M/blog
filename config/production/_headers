@@ -1,10 +1,9 @@
 /*
   Access-Control-Allow-Origin: "nherve.dev"
-  Content-Security-Policy: frame-src 'self' giscus.app; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net giscus.app; frame-ancestors 'none'; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self' cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' statistics.nherve.dev cdn.jsdelivr.net giscus.app; upgrade-insecure-requests;
-  X-Frame-Options: DENY
+  Content-Security-Policy: base-uri 'self'; child-src 'none'; object-src 'none'; form-action 'self'; frame-src 'self' https://giscus.app https://github.com; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net https://giscus.app; frame-ancestors 'none'; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self' cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' https://statistics.nherve.dev cdn.jsdelivr.net giscus.app; upgrade-insecure-requests;
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: accelerometer=(), ambient-light-sensor(), attribution-reporting(), autoplay=(), bluetooth=(), camera=(), compute-pressure=(), display-capture=(), document-domain=(), encrypted-media=(), fullscreen=(), gamepad=(), geolocation=(self https://statistics.nherve.dev/), gyroscope=(), hid=(), identity-credentials-get=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), otp-credentials=(), payment=(), picture-in-picture=(), publickey-credentials-create=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), speaker-selection=(), storage-access=(), usb=(), web-share=(self), window-management=(), xr-spatial-tracking=()
-  
+  Permissions-Policy: Permissions-Policy: accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=("https://statistics.nherve.dev"), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()
+
 https://blog-hervem.pages.dev/*
   X-Robots-Tag: noindex
