@@ -2,6 +2,7 @@
 title: ".NET Engineering rules – Is automation possible?"
 description: ""
 date: "2020-07-30"
+authors: [herve-m]
 slug: "can-net-eng-rules-be-automated"
 categories: [".NET Automation"]
 tags: [".NET", "eng-rules" ]
@@ -9,6 +10,8 @@ license: "cc-by-4.0"
 summary:  "" 
 featuredImage: "featured-image.jpg"
 featuredImagePreview: "featured-image-preview.jpg"
+toc:
+  auto: false
 ---
 
 When we talk about automation in DevOps, we directly think about automating infrastructure and deployment. Alongside with all the well-known tooling as Kubernetes, Ansible, Docker, etc. But automation doesn’t stop here and even begin far way behind, directly at the Developer and Engineer side! Today we will see how we can introduce some automation for a .NET Core based project or team. To note this is a share of vision not yet a guideline 😉
