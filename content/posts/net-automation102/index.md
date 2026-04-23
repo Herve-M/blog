@@ -35,7 +35,7 @@ First to be able to do automation we need that the [VSC](https://en.wikipedia.or
 * `scripts`: all the scripts used in your solution \(not sql\, powershell \| bacch one\)
 * `tools`: all the source code of tools implemented or used alongside your project
 
-From here we will begin from scratch with a new, empty, repository from TFS: [Automation.Playground](https://tfs.amaris.com/tfs/ITArchitecture/DevOps/_git/Automation.Playground)
+From here we will begin from scratch with a new, empty, repository from TFS: Automation.Playground
 
 #### Creating the base folders
 

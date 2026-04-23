@@ -1,6 +1,6 @@
 baseURL = 'https://nherve.dev/'
 
-languageCode = 'en-us'
+languageCode = 'en'
 hasCJKLanguage = false
 defaultContentLanguage = "en"
 locale = "en"
@@ -13,15 +13,13 @@ enableRobotsTXT= true
 
 [params]
   version = "0.4.X"
-  fingerprint = "sha384"
+  fingerprint = "sha256"
   enablePWA = false
 
   # Author config
   [params.author]
     name = "Hervé-M"
     email = "https://mailhide.io/e/Hz13VXLP"
-    link = "http://localhost:1313/about/"
-    avatar = ""
     gravatarEmail = "herve.matysiak@viacesi.fr"
 
   # Social config about the author
@@ -102,9 +100,9 @@ enableRobotsTXT= true
 
   [params.image]
     # cache remote images for better optimisations
-    cacheRemote = true
+    cacheRemote = false
     # Image resizing and optimisation
-    optimise = true
+    optimise = false
 
   [params.home]
     [params.home.profile]
@@ -269,3 +267,9 @@ enableRobotsTXT= true
     url = "/categories/"
     title = ""
     weight = 3
+
+[taxonomies]
+  author = "authors"
+  category = "categories"
+  tag = "tags"
+  series = "series"
