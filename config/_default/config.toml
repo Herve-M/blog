@@ -1,9 +1,9 @@
 baseURL = 'https://nherve.dev/'
 
-languageCode = 'en'
-hasCJKLanguage = false
-defaultContentLanguage = "en"
 locale = "en"
+defaultContentLanguage = "en"
+hasCJKLanguage = false
+languageCode = 'en-US'
 
 title = "N(H)erve'd powered chronicles"
 
@@ -108,10 +108,10 @@ enableRobotsTXT= true
     [params.home.profile]
       enable = true
       gravatarEmail = "herve.matysiak@viacesi.fr"
-      avatarURL = "/images/avatar.webp"
+      avatarURL = ""
       avatarLinkURL = ""
       title = ""
-      subtitle = "Because things can and will go wrong."
+      subtitle = ""
       typeit = false
       social = true
       disclaimer = ""
