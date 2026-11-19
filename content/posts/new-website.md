@@ -21,13 +21,14 @@ resource site. After I moved to Wordpress, first hosted by [Archive-Host](https:
 to finally end to my own VPS at [Scaleway](https://www.scaleway.com/). Btw. I never have the time to write something trough..
 
 ## Why moving?
+
 My first thinking about Wordpress was to have a one-click usable blog2go. As I don't like WebDesign stuff, I bought a theme named `Salient` who reflected my need:  
 
 - Portfolio  
 - Blog (with rich syntax, etc.)  
 - Contact  
 
-But I get some trouble with this setup: load time, ssl config., css customization, Wordpress  Network.
+But I get some trouble with this setup: load time, ssl config., css customization, Wordpress Network.
 
 The load time was very bad, even with a good back-end server. Ningx, php-fpm, tmpsfs (for cache).
 The desktop version took pretty 3 to 6 s. to load, the mobile version was even worse. I played with many template option
@@ -39,5 +40,6 @@ I was obligated to use it. And yeah, when uploading an `img` it was using the fu
 Wordpress is a great software but it needs time to maintains. Most of the time you have auto-update (minor) but the extension must be updated with user confirmation. It will say that every time you have an idea to write something, you login into and you see some *badge* notifying you that X ext. have an update. And here begin the mess, I must read the changelog, test (locally) if everything is running fine with the template; if not update the template, etc. For a casual blogger like me, it's an over-powered solution.
 
 ## Moving to Hugo
+
 After discovering golang, I discovered this piece of software and the static site generation. I was aware of Jekyll but I never imagine moving into.
 I will first use it with the most know template `hyde` for the moment and with the time I will create my own template for my need. During this time (eta. 6 months), I will just do basic blogging and some template fix.

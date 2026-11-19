@@ -41,6 +41,7 @@ If you are on Unix/Linux you can use for example GParted.
 {{< image src="arti_dyna2base-dynaHDD.png" alt="Windows Disk Management overview of main drive" caption="Disk Management overview" >}}
 
 ### Put into practice
+
 {{< admonition type=warning open=true >}}
 The example below is done on a Windows system.
 {{< /admonition >}}
@@ -93,7 +94,6 @@ Check your settings for the last time.
 If you made a mistake, quit the application.
 If everything looks good, apply the `Write` changes.
 {{< image src="arti_dyna2base-09.png" alt="TestDisk disk partition view with modification, selecting Write sub-action" caption="TestDisk disk partition view with modification, selecting `Write` sub-action" >}}
-
 
 Confirm by typing `y`.
 {{< image src="arti_dyna2base-10.png" alt="TestDisk confirmation view" caption="TestDisk confirmation" >}}

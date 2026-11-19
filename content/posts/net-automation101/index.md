@@ -27,7 +27,7 @@ This article has been imported from a piece I originally wrote and shared intern
 Maybe it would be your first question, `what can we automate` in our project? This question could be answered by a simple experiment: take a fresh laptop, an external developer (or friend) and ask him to setup our app locally with making a featureful PR. Observe your friend and take notes of all manual setups he has to do and which isn’t documented (or which is) and what he needs to adapt (because tools get updated contrary to our documentation).  
 After the setup you would surely have notes like this one (not exhaustive): install Visual Studio Installer, setup VS 20XX Pro with basic workloads or components, install Git4Windows, Docker, a terminal and other requirement as VS extensions, etc.  
 After creating the PR, you will maybe see a kind of deja vue: your CI spot some problems, project not building, NuGet restore failing for his target. Talking about a PR, you will pair review it and show him that he didn’t follow the code convention which isn’t really documented, that he updated a project without updating the other, he installed a tool for .NET Core 3.1 instead of 2.1 etc..  
-Now the question to ask to yourself as Software Engineer or TechLeads, `how could I have avoided this ?`.  It may be possible to enforce a specific runtime/SDK, enforcing rules and conventions and maybe you could even simplify the PR review process. No harder reading of unwanted space, tabulation... No more eye drain!  
+Now the question to ask to yourself as Software Engineer or TechLeads, `how could I have avoided this ?`. It may be possible to enforce a specific runtime/SDK, enforcing rules and conventions and maybe you could even simplify the PR review process. No harder reading of unwanted space, tabulation... No more eye drain!  
 
 ## How does the other do?
 
@@ -38,27 +38,27 @@ Now the question to ask to yourself as Software Engineer or TechLeads, `how coul
 ### Root files
 
 * `*.md` Most of them are documentation related files, most important files for Developer is the CONTRIBUTING.md
-* [`.dockerignore`]( https://github.com/dotnet/runtime/blob/master/.dockerignore) is used by the Docker system for creating a container image, to ignore folder/files. 
+* [`.dockerignore`](https://github.com/dotnet/runtime/blob/master/.dockerignore) is used by the Docker system for creating a container image, to ignore folder/files.
 * [`.editorconfig`](https://github.com/dotnet/runtime/blob/master/.editorconfig) is used by VisualStudio (and other tools) to define your code format convention :-) This files can be generated.
-* [`.gitattributes`](https://github.com/dotnet/runtime/blob/master/.gitattributes) & [`.gitignore`]( https://github.com/dotnet/runtime/blob/master/.gitignore) are git related files. The first one defines how a type of files is diff. (and counted in the diff.) and the End Of Lines behavior. The second one is used to ignore specifics files/folders.
+* [`.gitattributes`](https://github.com/dotnet/runtime/blob/master/.gitattributes) & [`.gitignore`](https://github.com/dotnet/runtime/blob/master/.gitignore) are git related files. The first one defines how a type of files is diff. (and counted in the diff.) and the End Of Lines behavior. The second one is used to ignore specifics files/folders.
 * [`.vsconfig`](https://github.com/dotnet/runtime/blob/master/.vsconfig) is used by VisualStudion to define what the project/solution needs as components/workloads to work correctly. This files can be generated too.
 * [`*.proj`] & [`*..targets`] are MSBuild files used to define some behavior and configuration (where are the source, what targert, define constant etc..). VisualStudio as Visual Studio Code (and other decent .NET IDE) use them too. You can check this doc and this one to learn more about MsBuild concept.
-* [`Nuget.config`]( https://github.com/dotnet/runtime/blob/master/NuGet.config) as the name state, this files is used by NuGet to define, most of the time, your feeds & API keys. As you may see, Microsoft has internal feeds with specific tools (we will talk about them later)
+* [`Nuget.config`](https://github.com/dotnet/runtime/blob/master/NuGet.config) as the name state, this files is used by NuGet to define, most of the time, your feeds & API keys. As you may see, Microsoft has internal feeds with specific tools (we will talk about them later)
 * [`global.json`](https://github.com/dotnet/runtime/blob/master/global.json) is a .NET Core manifest file helping the Target Framework Moniker to know which version of runtime/SDK to use. It has consequences on all the .NET tooling env. as VisualStudio etc.. To note that Microsoft extended it for they own (`native-tools`, `tools`, `msbuild-sdks`) for the setup of a new dev. env. (more later)!
-* [`*.sh`] & other scripts, used to automate task as building, testing but mostly to setup a new developer environment following their guideline! Most of them are just shortcut to the `eng/` folder… 
+* [`*.sh`] & other scripts, used to automate task as building, testing but mostly to setup a new developer environment following their guideline! Most of them are just shortcut to the `eng/` folder…
 
 ### Folder structure
 
-[`.config`](https://github.com/dotnet/runtime/tree/master/.config) one another folder used to store .NET Core related files. Here we have [`dotnet-tools.json`]( https://github.com/dotnet/runtime/tree/master/.config) used by .NET Core 2.X (and up) to setup automatically .NET Core tools. The second one is used for configuration a CI security scanner tool named SecDevTools (beta limited to Azure, because DevOps + Security = DevSecOps)
-[`.github`](https://github.com/dotnet/runtime/tree/master/.github) is dedicated to setup the behavior of your Github repository tools (Issue, Wiki, Contribution rules, PR reviewer code assignment, etc..) 
-[`docs`](https://github.com/dotnet/runtime/tree/master/docs) as is named tells us, it’s the documentation folder for the project. It contains the guidelines,  tech glossary, architecture decision/explanation and many others (as who is the TechLeads of a feature for review, Team charter etc…).
+[`.config`](https://github.com/dotnet/runtime/tree/master/.config) one another folder used to store .NET Core related files. Here we have [`dotnet-tools.json`](https://github.com/dotnet/runtime/tree/master/.config) used by .NET Core 2.X (and up) to setup automatically .NET Core tools. The second one is used for configuration a CI security scanner tool named SecDevTools (beta limited to Azure, because DevOps + Security = DevSecOps)
+[`.github`](https://github.com/dotnet/runtime/tree/master/.github) is dedicated to setup the behavior of your Github repository tools (Issue, Wiki, Contribution rules, PR reviewer code assignment, etc..)
+[`docs`](https://github.com/dotnet/runtime/tree/master/docs) as is named tells us, it’s the documentation folder for the project. It contains the guidelines, tech glossary, architecture decision/explanation and many others (as who is the TechLeads of a feature for review, Team charter etc…).
 [`eng`](https://github.com/dotnet/runtime/tree/master/eng) one of the most important folder, the `engineering` folder. It contains all the global rules from Microsoft that most of all the teams/projects try to follow but not only, it give you the script to setup your dev. and CI/CD environment, analyzer rules, CI/CD pipelines definition or custom task and many more. You will see that most of the .NET project has this folder!  
-[`src`](https://github.com/dotnet/runtime/tree/master/src) nothing surprising for this one, it contains the source of your project. 
-[`tools-local`]( https://github.com/dotnet/runtime/tree/master/tools-local) this folder is a little bit special as it contains source code of tools used by or for the project.
+[`src`](https://github.com/dotnet/runtime/tree/master/src) nothing surprising for this one, it contains the source of your project.
+[`tools-local`](https://github.com/dotnet/runtime/tree/master/tools-local) this folder is a little bit special as it contains source code of tools used by or for the project.
 
 ## How is it for other?
 
-Just for the fun if you search inside the .NET Foundation organization collection on Github you will find plenty of other projects. Let us take the last known experiment from them[`tye`]( https://github.com/dotnet/tye).
+Just for the fun if you search inside the .NET Foundation organization collection on Github you will find plenty of other projects. Let us take the last known experiment from them[`tye`](https://github.com/dotnet/tye).
 
 {{< figure src="repo-dotnettye.png" alt="Repository screenshot to show folder & file structure" title="GitHub repository of [dotnet/tye](https://github.com/dotnet/tye)" >}}
 
@@ -68,7 +68,7 @@ Unlike the “old” repository structure of `runtime` we can see other new fold
 * `samples`: example of how to use it
 * `test`: all the test for the project
 
-We can take a look to another important repository of the upcoming .NET 5: [`performance`]( https://github.com/dotnet/performance)
+We can take a look to another important repository of the upcoming .NET 5: [`performance`](https://github.com/dotnet/performance)
 
 {{< figure src="repo-dotnetperformance.png" alt="Repository screenshot to show folder & file structure" title="GitHub repository of [*dotnet/performance*](https://github.com/dotnet/performance)" >}}
 
@@ -76,7 +76,7 @@ As we can see, we have the kind of same structure, interesting no? Where does it
 
 ## Understanding the need
 
-History lesson first, do you know how Microsoft managed to host and setup the CI/CD all the long? 
+History lesson first, do you know how Microsoft managed to host and setup the CI/CD all the long?
 Long, long time ago, in another far far away company trying to do/take Open Source seriously; Microsoft tried to adapt to a new word and tools. As you may have seen, Microsoft teams didn’t even use their own tools (DevOps/TFS) for hosting these big projects. Each project (runtime, SDK, installer, extension, etc..) had a dedicated repository, a dedicated Developer Team & Engineering Team without any sync to other (hum looks like us? =P). They used Github as a repository system, Jenkins for cross-platform CI/CD and VSTS (DevOps aka old TFS) for signing and other internal tasks. Even using kind of centralized definition of CI/scripts (KoreBuild) and dotnet-ci, this introduced problems, many problems:
 
 * Cohesion between the Soft. Teams and Projects, developers moving between repositories were less efficient.
@@ -92,14 +92,14 @@ Today Arcade project helps all Microsoft .NET Core team on:
 * Defining project targets, constants, and compiler configurations per platform
 * Defining what and how a developer setup must be
   * SDK
-  * Runtime 
+  * Runtime
   * External (cross language) dependencies compilations & setup
-  * Tooling setup & configuration 
+  * Tooling setup & configuration
 * Dependencies management (more info. here)
   * Reporting and versioning process
-  * Updating process 
+  * Updating process
   * Tools (darc / maestro++)
-* Versioning 
+* Versioning
 * And plenty more
 
 Since the introduction, the .NET Foundation began a big move to a monorepo alike for .NET 5 [Consolidating .NET GitHub repos](https://github.com/dotnet/announcements/issues/119) & by example for [dotnet/extensions](https://github.com/aspnet/Announcements/issues/411) and it implies the arcade migration too!
@@ -118,7 +118,7 @@ Speaking about the tooling, most modern languages are delivered with a rich tool
 * vet: a go program analyzer
 * …
 
-Rust do the same too! Contrary to .NET world who did not adapt or through to the new needs of developers. Therefore the .NET Core tooling community is crowing and more & more options begin to be available for us (like dotnet-format for gofmt, dotnet-monitor|trace|counter for pprof & trace, docfx for doc, coverlet for cover and even Nerdbank.GitVersioning without any other match!, etc…) 
+Rust do the same too! Contrary to .NET world who did not adapt or through to the new needs of developers. Therefore the .NET Core tooling community is crowing and more & more options begin to be available for us (like dotnet-format for gofmt, dotnet-monitor|trace|counter for pprof & trace, docfx for doc, coverlet for cover and even Nerdbank.GitVersioning without any other match!, etc…)
 
 ## How can we automate?
 

@@ -24,7 +24,7 @@ Before all, this article is about to share a vision and experiment: it is *not y
 
 > We will suppose that your environment is setup and running: [Visual Studio](https://visualstudio.microsoft.com/), [git4windows](https://gitforwindows.org/), a terminal ([Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701), [cmder](https://cmder.net/) or even [Git Bash](https://gitforwindows.org/)) and PowerShell. Btw, I will try to follow as much as possible the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 
-### Preparing the battle ground
+## Preparing the battle ground
 
 First to be able to do automation we need that the [VSC](https://en.wikipedia.org/wiki/Version_control) file structure can support our needs. As said before we will follow a modern global folder pattern: docs, src, tests, eng, scripts, tools. Let us see what go where:
 
@@ -37,7 +37,7 @@ First to be able to do automation we need that the [VSC](https://en.wikipedia.or
 
 From here we will begin from scratch with a new, empty, repository from TFS: Automation.Playground
 
-#### Creating the base folders
+### Creating the base folders
 
 * `mkdir docs,src,tests,eng,scripts,tools`
 
@@ -50,7 +50,7 @@ I will import the [gitignore](https://www.git-scm.com/docs/gitignore) file from 
 * `curl -O https://raw.githubusercontent.com/dotnet/runtime/master/.gitattributes`
 * `curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/VisualStudio.gitignore`
 
-{{< figure src="git-files.png" alt="Cmdline screenshot showing result of previous snippet" >}} 
+{{< figure src="git-files.png" alt="Cmdline screenshot showing result of previous snippet" >}}
 
 #### Adding a `global.json`
 
@@ -58,7 +58,7 @@ Here we know that our team works with .NET Core and for the moment the latest 2.
 
 * `dotnet new globaljson  --sdk-version 2.1.800`
 
-{{< figure src="adding-globaljson.png" alt="Cmdline screenshot showing result of previous snippet" >}} 
+{{< figure src="adding-globaljson.png" alt="Cmdline screenshot showing result of previous snippet" >}}
 
 For safety reason, we will block to only use the latest LTS in our project by following this [doc](https://docs.microsoft.com/en-us/dotnet/core/tools/global-json?tabs=netcore3x#rollforward).
 
@@ -77,10 +77,10 @@ For safety reason, we will block to only use the latest LTS in our project by fo
 Before continuing further, we will need to setup a little empty project!
 
 1. Go to `src/` and do a new project: `dotnet new console -n Playground`
-{{< figure src="adding-basicproject.png" alt="Cmdline screenshot showing result of previous snippet" >}} 
+{{< figure src="adding-basicproject.png" alt="Cmdline screenshot showing result of previous snippet" >}}
 2. Open the generated project and save the solution file in the root folder
 3. Add the other existing files into the solution, (Right click on solution > Add existing item > select them \* Add) and Save
-{{< figure src="setup-solution.png" alt="Cmdline screenshot showing result of previous snippet" >}} 
+{{< figure src="setup-solution.png" alt="Cmdline screenshot showing result of previous snippet" >}}
 4. Add these solution folders: src, docs, tests  
   a. Move the `Playground` project inside `src`
 5. Add a `XUnit Test Project` into the solution folder tests and the corresponding physical folder
@@ -111,9 +111,9 @@ Let’s take a look:
 
 Go to the `Solution > right click > Installation Configuration File`
 
-{{< figure src="adding-vsconfig-prompt_01.png" alt="Cmdline screenshot showing result of previous snippet" >}} 
+{{< figure src="adding-vsconfig-prompt_01.png" alt="Cmdline screenshot showing result of previous snippet" >}}
 
-{{< figure src="adding-vsconfig-prompt_02.png" alt="Cmdline screenshot showing result of previous snippet" >}} 
+{{< figure src="adding-vsconfig-prompt_02.png" alt="Cmdline screenshot showing result of previous snippet" >}}
 
 But before, review the configuration to only include what the project needs:
 
@@ -231,11 +231,11 @@ To finish we add some build configuration for the fun 👿
 
 ##### Adding source code analyzers
 
-One of the most famous things about .NET world are the [source code analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview?view=vs-2019) who help developer to detect, explain and in the best case fix know problems. We will setup ` StyleCop.Analyzers` and ` FxCopAnalyzers`.
+One of the most famous things about .NET world are the [source code analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview?view=vs-2019) who help developer to detect, explain and in the best case fix know problems. We will setup `StyleCop.Analyzers` and `FxCopAnalyzers`.
 
 ###### Create a `Analyzers.props` in the `eng` folder
 
-_For .NET Framework related_
+For .NET Framework related:
 
 ```xml
 <Project>
@@ -254,7 +254,7 @@ _For .NET Framework related_
 </Project>
 ```
 
-_For .NET Core related (need .NET 5 SDK installed locally)_
+For .NET Core related (need .NET 5 SDK installed locally):
 
 ```xml
 <Project>
@@ -289,16 +289,16 @@ Of course, we need to import it too we need to add this line into the root props
   <Import Project="$(RepositoryEngineeringDir)Analyzers.test.props" Condition="'$(IsTestProject)' == 'true'"/>
 ```
 
-##### Import `CodeAnalysis.ruleset` & `CodeAnalysis.test.ruleset` in the `eng` folder.
+##### Import `CodeAnalysis.ruleset` & `CodeAnalysis.test.ruleset` in the `eng` folder
 
 Something hard to do when you arrive in the world of source code analysis are the rules.. Here we will follow the one from Microsoft .NET Core team too (for the ease)
 
-_For .NET Framework_
+For .NET Framework:
 
 * `curl -O`[`https://raw.githubusercontent.com/dotnet/runtime/83e56c474af7127d2909e5d4a11400964abb3ac9/eng/CodeAnalysis.ruleset`](https://raw.githubusercontent.com/dotnet/runtime/83e56c474af7127d2909e5d4a11400964abb3ac9/eng/CodeAnalysis.ruleset)
 * `curl -O`[`https://raw.githubusercontent.com/dotnet/runtime/master/eng/CodeAnalysis.test.ruleset`](https://raw.githubusercontent.com/dotnet/runtime/master/eng/CodeAnalysis.test.ruleset)
 
-_For .NET Core_
+For .NET Core:
 
 * `curl -O`[`https://raw.githubusercontent.com/dotnet/runtime/master/eng/CodeAnalysis.ruleset`](https://raw.githubusercontent.com/dotnet/runtime/master/eng/CodeAnalysis.ruleset)
 * `curl -O`[`https://raw.githubusercontent.com/dotnet/runtime/master/eng/CodeAnalysis.test.ruleset`](https://raw.githubusercontent.com/dotnet/runtime/master/eng/CodeAnalysis.test.ruleset)
