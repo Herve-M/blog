@@ -47,36 +47,36 @@ url_api = "https://api.github.com/repos/cli/cli/releases/assets/761188741"
 provenance = "github-attestations"
 
 [[tools.hugo-extended]]
-version = "0.160.1"
+version = "0.169.0"
 backend = "aqua:gohugoio/hugo/hugo-extended"
 
 [tools.hugo-extended."platforms.linux-arm64"]
-checksum = "sha256:be4203d99a5b91446cd89af1e788aeb3c6210cbe78fab380a26be135a3f4ec59"
-url = "https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_extended_0.160.1_linux-arm64.tar.gz"
+checksum = "sha256:5b190e5d2836c09efe25cc6249f70bde8a6c5331ef412a4c9137e9d5de89a515"
+url = "https://github.com/gohugoio/hugo/releases/download/v0.169.0/hugo_extended_0.169.0_linux-arm64.tar.gz"
 
 [tools.hugo-extended."platforms.linux-arm64-musl"]
-checksum = "sha256:be4203d99a5b91446cd89af1e788aeb3c6210cbe78fab380a26be135a3f4ec59"
-url = "https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_extended_0.160.1_linux-arm64.tar.gz"
+checksum = "sha256:5b190e5d2836c09efe25cc6249f70bde8a6c5331ef412a4c9137e9d5de89a515"
+url = "https://github.com/gohugoio/hugo/releases/download/v0.169.0/hugo_extended_0.169.0_linux-arm64.tar.gz"
 
 [tools.hugo-extended."platforms.linux-x64"]
-checksum = "sha256:133adf4932c1b626b6fe6aa28d56791555abe3ceff167e03be534e8324c9ed39"
-url = "https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_extended_0.160.1_linux-amd64.tar.gz"
+checksum = "sha256:c41672a0725d307758a132bc94a962e59760eb33f9ba08c991b81f9881d6fa7d"
+url = "https://github.com/gohugoio/hugo/releases/download/v0.169.0/hugo_extended_0.169.0_linux-amd64.tar.gz"
 
 [tools.hugo-extended."platforms.linux-x64-musl"]
-checksum = "sha256:133adf4932c1b626b6fe6aa28d56791555abe3ceff167e03be534e8324c9ed39"
-url = "https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_extended_0.160.1_linux-amd64.tar.gz"
+checksum = "sha256:c41672a0725d307758a132bc94a962e59760eb33f9ba08c991b81f9881d6fa7d"
+url = "https://github.com/gohugoio/hugo/releases/download/v0.169.0/hugo_extended_0.169.0_linux-amd64.tar.gz"
 
 [tools.hugo-extended."platforms.macos-arm64"]
-checksum = "sha256:11daf91390cd44df875395f8222e5bc8588fdbea64413f65389b6f985fde0463"
-url = "https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_extended_0.160.1_darwin-universal.pkg"
+checksum = "sha256:d48dfd5adab308f941e83e48c5ba925747cf383395972278942cf526ad27cf38"
+url = "https://github.com/gohugoio/hugo/releases/download/v0.169.0/hugo_extended_0.169.0_darwin-universal.pkg"
 
 [tools.hugo-extended."platforms.macos-x64"]
-checksum = "sha256:11daf91390cd44df875395f8222e5bc8588fdbea64413f65389b6f985fde0463"
-url = "https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_extended_0.160.1_darwin-universal.pkg"
+checksum = "sha256:d48dfd5adab308f941e83e48c5ba925747cf383395972278942cf526ad27cf38"
+url = "https://github.com/gohugoio/hugo/releases/download/v0.169.0/hugo_extended_0.169.0_darwin-universal.pkg"
 
 [tools.hugo-extended."platforms.windows-x64"]
-checksum = "sha256:f5e342de1c9b22dc03318c14689cbc81ac9afec0c6f2080e0cf5a3aa03edbf6d"
-url = "https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_extended_0.160.1_windows-amd64.zip"
+checksum = "sha256:396b4c8326dc2dd61c2618f825042781c5ea43e1ac1375a2204a9fde4e98b84c"
+url = "https://github.com/gohugoio/hugo/releases/download/v0.169.0/hugo_extended_0.169.0_windows-amd64.zip"
 
 [[tools.node]]
 version = "26.13.1"
