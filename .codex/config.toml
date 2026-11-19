@@ -9,5 +9,9 @@ enabled = true
 [plugins."cloudflare@openai-curated-remote".mcp_servers.cloudflare-api]
 enabled = true
 
+[plugins."cloudflare@cloudflare"]
+enabled = true
+
 [plugins."superpowers@openai-curated-remote"]
 enabled = false
+
