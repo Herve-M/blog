@@ -3,7 +3,9 @@ repos:
     hooks:
       - id: rumdl
         name: Lint Markdown
-        entry: mise run lint-markdown --
+        entry: mise run lint-markdown -- .
         language: system
         types: [markdown]
+        pass_filenames: false
+        always_run: true
         exclude: ^(themes/|public/|resources/_gen/)

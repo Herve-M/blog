@@ -42,7 +42,7 @@ Use both builds for shared configuration, template, or theme changes. Inspect af
 
 Each build task clears generated output while preserving `public/.gitkeep`, runs Hugo, and copies the corresponding `_headers` and `_redirects` into `public/`. Beta uses Hugo's existing `staging` environment and includes drafts, expired posts, and future posts. Production includes expired posts but excludes drafts and future posts.
 
-Install local Markdown hooks with `mise run install-hooks`. Hooks run mise-managed rumdl in check-only mode on staged Markdown files. Use `mise run lint-markdown -- path/to/file.md` to check specific files or `mise run check-hooks` to check all tracked Markdown, including historical files that may need cleanup. Non-draft PRs lint only added or modified Markdown and build both environments. Validate release checks with `mise run test:release`.
+Install local Markdown hooks with `mise run install-hooks`. Hooks run mise-managed rumdl in check-only mode across all repository Markdown on every commit, including commits that touch no Markdown. All repository Markdown must pass the configured lint rules, including unchanged posts and documentation. Use `mise run check-hooks` for the same full check, or `mise run lint-markdown -- path/to/file.md` for a focused check during editing. Non-draft PRs lint all repository Markdown and build both environments against the PR merge revision. Theme submodules and generated output are excluded. Validate release checks with `mise run test:release`.
 
 GitHub Actions deploys pushes to `master` as beta and valid `YYYY.MM.DD.N` tags on master history as production. See [deployment setup and releases](docs/deployment.md) for Cloudflare settings, required GitHub secrets, and release commands.
 

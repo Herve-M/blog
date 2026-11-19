@@ -39,7 +39,7 @@ description = "Install repository Git hooks"
 run = "prek install"
 
 [tasks.check-hooks]
-description = "Run repository hooks against all tracked files"
+description = "Run repository hooks, enforcing valid Markdown across the whole repository"
 run = "prek run --all-files"
 
 [tasks."test:release"]

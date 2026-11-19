@@ -20,18 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
           persist-credentials: false
       - uses: jdx/mise-action@5228313ee0372e111a38da051671ca30fc5a96db # v3.6.3
         with:
           version: 2026.11.10
           install_args: prek rumdl
-      - name: Lint Markdown changed by the PR
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: mise exec -- prek run --from-ref "$BASE_SHA" --to-ref "$HEAD_SHA"
+      - name: Lint all Markdown
+        run: mise run check-hooks
 
   hugo:
     name: Hugo (${{ matrix.target }})

@@ -50,9 +50,9 @@ mise run lint-markdown -- docs/deployment.md
 
 Each build first clears `public/`, preserving its tracked `.gitkeep`, then runs Hugo and copies the environment's `_headers` and `_redirects`. Run builds sequentially in a shared checkout. Beta includes drafts, expired posts, and future posts; production includes expired posts but excludes drafts and future posts.
 
-Prek runs rumdl without fixing files. Hooks check staged Markdown locally. PRs check Markdown added or modified since the merge base with the target branch, and build both environments against the PR merge revision with LFS assets and DoIt initialized. Opening, updating, reopening, or marking a PR ready for review triggers checks; draft PRs skip them. Fork PRs can run these checks without deployment secrets.
+Prek runs rumdl without fixing files. Local hooks check all repository Markdown on every commit, even when the commit touches no Markdown. Non-draft PRs run the same full check and build both environments against the PR merge revision with LFS assets and DoIt initialized. Opening, updating, reopening, or marking a PR ready for review triggers checks; draft PRs skip them. Fork PRs can run these checks without deployment secrets.
 
-`mise run check-hooks` checks all tracked Markdown, including unchanged historical posts. Those historical files are outside the initial lint migration and may report existing issues. The lint configuration permits long lines, inline HTML, and titles supplied through Hugo front matter; content files use rumdl's Hugo flavor. Themes and generated files are excluded.
+`mise run check-hooks` checks all repository Markdown, including unchanged historical posts and documentation. All files must remain valid under the configured rules; unchanged files receive no exemption. The lint configuration permits long lines, inline HTML, and titles supplied through Hugo front matter; content files use rumdl's Hugo flavor. Themes and generated files are excluded. Use `mise run lint-markdown -- path/to/file.md` for a focused check while editing; commit hooks and PR checks always check the whole repository.
 
 ## Production releases
 
