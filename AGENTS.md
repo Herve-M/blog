@@ -31,16 +31,20 @@ Start the local preview with the existing mise task:
 mise run serve
 ```
 
-This runs `hugo serve --disableFastRender`. Run Hugo through mise so it uses the pinned Extended binary. Validate site changes with the relevant build commands, matching the flags in `build.sh`:
+This runs `hugo serve --disableFastRender`. Validate site changes with the mise build tasks so they use the pinned Extended binary:
 
 ```sh
-mise exec -- hugo --environment production --buildExpired --minify
-mise exec -- hugo --environment staging --buildDrafts --buildExpired --buildFuture --minify
+mise run build:production
+mise run build:beta
 ```
 
 Use both builds for shared configuration, template, or theme changes. Inspect affected pages in the local preview for content and visual changes. If dependencies, theme files, or LFS assets are unavailable, report the validation limitation explicitly.
 
-`build.sh` selects the environment using `CF_PAGES_BRANCH` (`production` or `staging`) and copies the corresponding `_headers` and `_redirects` into `public/`. The Hugo commands above validate site generation; they do not perform those deployment copies.
+Each build task clears generated output while preserving `public/.gitkeep`, runs Hugo, and copies the corresponding `_headers` and `_redirects` into `public/`. Beta uses Hugo's existing `staging` environment and includes drafts, expired posts, and future posts. Production includes expired posts but excludes drafts and future posts.
+
+Install local Markdown hooks with `mise run install-hooks`. Hooks run mise-managed rumdl in check-only mode across all repository Markdown on every commit, including commits that touch no Markdown. All repository Markdown must pass the configured lint rules, including unchanged posts and documentation. Use `mise run check-hooks` for the same full check, or `mise run lint-markdown -- path/to/file.md` for a focused check during editing. Non-draft PRs lint all repository Markdown and build both environments against the PR merge revision. Theme submodules and generated output are excluded. Validate release checks with `mise run test:release`.
+
+GitHub Actions deploys pushes to `master` as beta and valid `YYYY.MM.DD.N` tags on master history as production. See [deployment setup and releases](docs/deployment.md) for Cloudflare settings, required GitHub secrets, and release commands.
 
 ## Repository layout and editing conventions
 
@@ -53,7 +57,7 @@ Use both builds for shared configuration, template, or theme changes. Inspect af
 
 Do not commit generated output such as `public/`, `resources/_gen/`, or Hugo lock files. Preserve the tracked `public/.gitkeep`. Keep content, configuration, and template changes focused on the requested task.
 
-# Code Review Rules
+## Code Review Rules
 
 These rules apply to Codex PR reviews. Read and follow each linked policy relevant to the changed files; these documents are authoritative repository review instructions.
 
@@ -61,7 +65,7 @@ These rules apply to Codex PR reviews. Read and follow each linked policy releva
 - **Hugo Markdown:** Follow [Hugo Markdown compatibility](docs/agents/hugo-markdown-review.md). Report introduced build failures or incorrect rendering against the repository's pinned Hugo Extended, DoIt revision, and actual configuration; do not enforce generic Markdown style.
 - **Attachment metadata:** Follow [Attachment metadata privacy](docs/agents/attachment-metadata-review.md) for added or modified attachments. Inspect actual embedded metadata for concrete private information useful for identification, location tracking, or social engineering. This review is metadata-only.
 
-## Shared review behavior
+### Shared review behavior
 
 - Review PR changes, using unchanged content for context. Do not report pre-existing issues unless the PR newly exposes them or causes them to break.
 - Do not edit files, apply fixes, strip metadata, or change dependencies during review. Use existing tools; builds may write ignored artifacts. Report findings as PR review comments only, without posting unrelated messages.
@@ -69,6 +73,6 @@ These rules apply to Codex PR reviews. Read and follow each linked policy releva
 - Anchor text findings to affected changed lines. For binary attachments, identify the file and metadata field; use a file-level comment when available, never invent a text line or reproduce sensitive metadata values.
 - If no reportable issues are found, return no findings. If a check cannot be completed, record the specific coverage limitation separately from findings in the review task's execution status, when supported. Do not treat missing evidence as a defect or claim an unperformed check passed.
 
-## Hosted review limits
+### Hosted review limits
 
 [OpenAI's Codex GitHub review documentation](https://developers.openai.com/codex/integrations/github) currently describes a P0/P1-only reporting threshold for hosted reviews. These policies define what to check, but cannot guarantee that lower-severity proofreading or compatibility findings will be posted. Keep severity proportional to actual impact; never promote a typo or other minor issue to bypass a reporting threshold. Review guidance does not replace tests or required approvals.

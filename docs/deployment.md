@@ -1,0 +1,93 @@
+# Builds and deployments
+
+GitHub Actions builds this Hugo site and uploads the generated `public/` directory to the existing Cloudflare Pages project `blog-hervem`. Cloudflare continues to host the site.
+
+| Git event | Hugo environment | Pages branch | Public domain |
+| --- | --- | --- | --- |
+| Push to `master` | `staging` | `beta` (preview) | `beta.nherve.dev` |
+| Push a valid `YYYY.MM.DD.N` tag on master history | `production` | `master` (production) | `nherve.dev` |
+| Non-draft pull request | Both, checks only | No upload | None |
+
+## One-time migration
+
+Before enabling the GitHub deployment workflow:
+
+1. Keep the existing `blog-hervem` Pages production branch set to `master`. Release uploads use this Pages branch label while building the tagged commit. Pushes to Git `master` upload with the `beta` label instead; no Git branch named `beta` is required.
+2. Keep automatic production branch deployments disabled and automatic preview branch deployments set to **None**. Both settings were confirmed through the Cloudflare API during migration preparation. This prevents Cloudflare from building alongside GitHub. An existing Git-integrated project can receive Wrangler uploads after its automatic builds are disabled; do not delete or recreate the project. See [Cloudflare Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/#disable-automatic-deployments).
+3. Keep `nherve.dev` attached to this project with its CNAME targeting `blog-hervem.pages.dev`. Keep `beta.nherve.dev` attached as a custom domain and update its proxied CNAME target from `master.blog-hervem.pages.dev` to `beta.blog-hervem.pages.dev`. See [custom domains on preview branches](https://developers.cloudflare.com/pages/how-to/custom-branch-aliases/).
+4. Add the repository Actions secrets below. Create the API token in Cloudflare; enter its value directly into GitHub secrets, never into source files.
+
+| GitHub Actions secret | Value |
+| --- | --- |
+| `CLOUDFLARE_ACCOUNT_ID` | The account containing `blog-hervem` |
+| `CLOUDFLARE_API_TOKEN` | API token with **Account / Cloudflare Pages / Edit**, restricted to that account |
+
+These are repository secrets, available to the upload step in the deployment workflow. PR checks use `pull_request` events and do not receive Cloudflare credentials. The workflow's GitHub token has only `contents: read`; it does not post PR comments.
+
+Cloudflare account settings, DNS records, and GitHub secrets are configured separately from this repository change. Use the Cloudflare dashboard to confirm the existing project and domain mappings before cutover.
+
+## Local setup and checks
+
+Install mise and Git LFS, then run:
+
+```sh
+mise install
+git submodule update --init --recursive themes/DoIt
+git lfs install --local
+git lfs pull
+mise run install-hooks
+```
+
+Mise pins Hugo Extended, Node LTS, Wrangler, GitHub CLI, prek, and rumdl. Keep `mise.toml` and `mise.lock` together when updating tools. The inactive FeelIt and LoveIt theme submodules are not needed.
+
+```sh
+mise run serve
+mise run build:beta
+mise run build:production
+mise run test:release
+mise run lint-markdown -- docs/deployment.md
+```
+
+Each build first clears `public/`, preserving its tracked `.gitkeep`, then runs Hugo and copies the environment's `_headers` and `_redirects`. Run builds sequentially in a shared checkout. Beta includes drafts, expired posts, and future posts; production includes expired posts but excludes drafts and future posts.
+
+Prek runs rumdl without fixing files. Local hooks check all repository Markdown on every commit, even when the commit touches no Markdown. Non-draft PRs run the same full check and build both environments against the PR merge revision with LFS assets and DoIt initialized. Opening, updating, reopening, or marking a PR ready for review triggers checks; draft PRs skip them. Fork PRs can run these checks without deployment secrets.
+
+`mise run check-hooks` checks all repository Markdown, including unchanged historical posts and documentation. All files must remain valid under the configured rules; unchanged files receive no exemption. The lint configuration permits long lines, inline HTML, and titles supplied through Hugo front matter; content files use rumdl's Hugo flavor. Themes and generated files are excluded. Use `mise run lint-markdown -- path/to/file.md` for a focused check while editing; commit hooks and PR checks always check the whole repository.
+
+## Production releases
+
+Use `mise run release` on `master` to create and publish a release. Stage any changes you want included first:
+
+```sh
+git switch master
+git pull --ff-only
+# Optional: git add path/to/changed-file.md
+mise run release
+```
+
+The task fetches `origin/master` and remote tags, chooses today's date in UTC and the next available `YYYY.MM.DD.N` counter, commits staged changes with message `Release <tag>`, and creates an annotated tag on that commit. With no staged changes, it creates an empty release commit. Untracked files are left alone. It refuses other branches, unstaged tracked changes, and a local master behind or diverged from `origin/master`.
+
+The release commit and tag are pushed together to `origin` using `git push --atomic`; neither remote ref updates if the server rejects the push. A failed push leaves the local commit and tag intact and prints the exact command to retry. Resolve the Git error and use that command rather than rerunning `mise run release`, which would create another release. The push triggers beta for master and production for the tag.
+
+For a manual release or rollback to an older master commit, create a tag of the form `YYYY.MM.DD.N`, such as `2026.11.19.1`. Use a real calendar date, two-digit month and day, and a positive counter without leading zeros. There is no `v` prefix. Increment the counter for additional releases on the same date.
+
+```sh
+git switch master
+git pull --ff-only
+git tag -a 2026.11.19.1 -m "Release 2026.11.19.1"
+git push origin refs/tags/2026.11.19.1
+```
+
+Tags may reference any commit reachable from `master`, including an older commit for a deliberate rollback. Both lightweight and annotated tags work. Tags outside master history, malformed date-prefixed tags, and nonexistent dates fail validation before upload. Unrelated tags and pushes to other branches do not deploy. Do not move published release tags; create a new tag instead. Tags do not automatically create GitHub Releases.
+
+GitHub reads a push-triggered workflow from the tagged commit. A commit predating this migration has no workflow to trigger, and a historical commit may contain an older workflow. To deploy either through the current release workflow, push the tag, then dispatch the workflow from `master`:
+
+```sh
+mise exec -- gh workflow run deploy.yml --ref master -f release_tag=2026.11.19.1
+```
+
+The manual path checks out the tagged revision and validates its master ancestry, tag, and commit SHA. It uses the current `master` versions of `mise.toml`, `mise.lock`, and the validator, while building the historical content, theme revision, Hugo configuration, headers, and redirects. The run must still pass the production build. See [GitHub workflow trigger behavior](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#push).
+
+GitHub uploads beta with `--branch beta` and production with `--branch master`, matching the existing Pages production branch and recording the checked-out commit SHA. The deployment run summary links to the uploaded version. New beta pushes cancel superseded beta runs; production uploads share a concurrency group without canceling a running release. GitHub concurrency keeps at most one pending run, so push release tags individually and wait for each deployment to finish.
+
+After cutover, verify the first master deployment at `beta.nherve.dev`, then a tagged release at `nherve.dev`. Confirm the expected site title, post visibility, headers, redirects, and deployed commit in the Actions run and Cloudflare dashboard. If a release needs rolling back, tag the desired older master commit with a new CalVer tag and push it.

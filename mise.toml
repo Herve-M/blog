@@ -1,8 +1,51 @@
 [tools]
 hugo-extended = "0.160.1"
+node = "26.13.1"
+"npm:wrangler" = "4.164.0"
+gh = "2.105.0"
+prek = "0.5.4"
+rumdl = "0.2.77"
 
 [settings]
 lockfile = true
 
 [tasks]
 serve = "hugo serve --disableFastRender"
+
+[tasks."build:beta"]
+description = "Build beta, including drafts and future posts, with Pages deployment files"
+run = [
+  "mkdir -p public",
+  "find public -mindepth 1 ! -path public/.gitkeep -delete",
+  "mise exec -- hugo --environment staging --buildDrafts --buildExpired --buildFuture --minify",
+  "cp config/staging/_headers config/staging/_redirects public/",
+]
+
+[tasks."build:production"]
+description = "Build production with Pages deployment files"
+run = [
+  "mkdir -p public",
+  "find public -mindepth 1 ! -path public/.gitkeep -delete",
+  "mise exec -- hugo --environment production --buildExpired --minify",
+  "cp config/production/_headers config/production/_redirects public/",
+]
+
+[tasks.lint-markdown]
+description = "Lint Markdown; optionally pass file paths after --"
+run = "rumdl check --config .rumdl.toml"
+
+[tasks.install-hooks]
+description = "Install repository Git hooks"
+run = "prek install"
+
+[tasks.check-hooks]
+description = "Run repository hooks, enforcing valid Markdown across the whole repository"
+run = "prek run --all-files"
+
+[tasks."test:release"]
+description = "Test release creation, publication, CalVer validation, and master ancestry checks"
+run = "node --test .github/scripts/validate-release.test.mjs scripts/release.test.mjs"
+
+[tasks.release]
+description = "Commit staged changes on master, create the next UTC CalVer tag, and atomically push both"
+run = "node scripts/release.mjs"

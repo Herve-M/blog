@@ -1,0 +1,7 @@
+[global]
+# Hugo renders titles from front matter and permits HTML and long prose lines.
+disable = ["MD013", "MD033", "MD041"]
+exclude = ["themes/**", "public/**", "resources/_gen/**"]
+
+[per-file-flavor]
+"content/**/*.md" = "hugo"
