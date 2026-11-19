@@ -43,5 +43,9 @@ description = "Run repository hooks against all tracked files"
 run = "prek run --all-files"
 
 [tasks."test:release"]
-description = "Test CalVer validation and master ancestry checks"
-run = "node --test .github/scripts/validate-release.test.mjs"
+description = "Test release creation, publication, CalVer validation, and master ancestry checks"
+run = "node --test .github/scripts/validate-release.test.mjs scripts/release.test.mjs"
+
+[tasks.release]
+description = "Commit staged changes on master, create the next UTC CalVer tag, and atomically push both"
+run = "node scripts/release.mjs"

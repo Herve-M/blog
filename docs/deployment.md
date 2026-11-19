@@ -56,7 +56,20 @@ Prek runs rumdl without fixing files. Hooks check staged Markdown locally. PRs c
 
 ## Production releases
 
-Create a tag of the form `YYYY.MM.DD.N`, such as `2026.11.19.1`. Use a real calendar date, two-digit month and day, and a positive counter without leading zeros. There is no `v` prefix. Increment the counter for additional releases on the same date.
+Use `mise run release` on `master` to create and publish a release. Stage any changes you want included first:
+
+```sh
+git switch master
+git pull --ff-only
+# Optional: git add path/to/changed-file.md
+mise run release
+```
+
+The task fetches `origin/master` and remote tags, chooses today's date in UTC and the next available `YYYY.MM.DD.N` counter, commits staged changes with message `Release <tag>`, and creates an annotated tag on that commit. With no staged changes, it creates an empty release commit. Untracked files are left alone. It refuses other branches, unstaged tracked changes, and a local master behind or diverged from `origin/master`.
+
+The release commit and tag are pushed together to `origin` using `git push --atomic`; neither remote ref updates if the server rejects the push. A failed push leaves the local commit and tag intact and prints the exact command to retry. Resolve the Git error and use that command rather than rerunning `mise run release`, which would create another release. The push triggers beta for master and production for the tag.
+
+For a manual release or rollback to an older master commit, create a tag of the form `YYYY.MM.DD.N`, such as `2026.11.19.1`. Use a real calendar date, two-digit month and day, and a positive counter without leading zeros. There is no `v` prefix. Increment the counter for additional releases on the same date.
 
 ```sh
 git switch master
