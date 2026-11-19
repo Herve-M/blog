@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: rumdl
+        name: Lint Markdown
+        entry: mise run lint-markdown --
+        language: system
+        types: [markdown]
+        exclude: ^(themes/|public/|resources/_gen/)

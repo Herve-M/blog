@@ -1,0 +1,71 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [master]
+    tags: ['[0-9][0-9][0-9][0-9].*']
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing CalVer tag to deploy (also supports commits predating this workflow)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ (github.event_name == 'workflow_dispatch' || github.ref_type == 'tag') && 'production' || 'beta' }}
+  cancel-in-progress: ${{ github.event_name == 'push' && github.ref_type == 'branch' }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PAGES_PROJECT: blog-hervem
+      TARGET: ${{ (github.event_name == 'workflow_dispatch' || github.ref_type == 'tag') && 'production' || 'beta' }}
+      PAGES_BRANCH: ${{ (github.event_name == 'workflow_dispatch' || github.ref_type == 'tag') && 'production' || 'master' }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ inputs.release_tag && format('refs/tags/{0}', inputs.release_tag) || github.ref }}
+          fetch-depth: 0
+          lfs: true
+          persist-credentials: false
+      - name: Check release ancestry before installing tools
+        if: env.TARGET == 'production'
+        run: git merge-base --is-ancestor HEAD refs/remotes/origin/master
+      - name: Use current release tooling for historical releases
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git show refs/remotes/origin/master:mise.toml > mise.toml
+          git show refs/remotes/origin/master:mise.lock > mise.lock
+          git show refs/remotes/origin/master:.github/scripts/validate-release.mjs > "$RUNNER_TEMP/validate-release.mjs"
+      - uses: jdx/mise-action@5228313ee0372e111a38da051671ca30fc5a96db # v3.6.3
+        with:
+          version: 2026.11.10
+      - name: Validate release tag and checked-out revision
+        if: env.TARGET == 'production'
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag || github.ref_name }}
+          RELEASE_VALIDATOR: ${{ github.event_name == 'workflow_dispatch' && format('{0}/validate-release.mjs', runner.temp) || '.github/scripts/validate-release.mjs' }}
+        run: mise exec -- node "$RELEASE_VALIDATOR" "$RELEASE_TAG"
+      - name: Initialize active theme
+        run: git submodule update --init --recursive themes/DoIt
+      - name: Build
+        run: mise run "build:$TARGET"
+      - name: Upload to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          mise exec -- wrangler pages deploy public \
+            --project-name "$PAGES_PROJECT" \
+            --branch "$PAGES_BRANCH" \
+            --commit-hash "$(git rev-parse HEAD)" \
+            --commit-dirty=false 2>&1 | tee "$RUNNER_TEMP/pages-deploy.log"
+          url=$(grep -Eo 'https://[a-zA-Z0-9.-]+\.pages\.dev' "$RUNNER_TEMP/pages-deploy.log" | sed -n '1p')
+          test -n "$url"
+          printf '### %s deployment\n\n[View deployment](%s)\n' "$TARGET" "$url" >> "$GITHUB_STEP_SUMMARY"
