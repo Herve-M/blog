@@ -4,17 +4,17 @@ GitHub Actions builds this Hugo site and uploads the generated `public/` directo
 
 | Git event | Hugo environment | Pages branch | Public domain |
 | --- | --- | --- | --- |
-| Push to `master` | `staging` | `master` (preview) | `beta.nherve.dev` |
-| Push a valid `YYYY.MM.DD.N` tag on master history | `production` | `production` | `nherve.dev` |
+| Push to `master` | `staging` | `beta` (preview) | `beta.nherve.dev` |
+| Push a valid `YYYY.MM.DD.N` tag on master history | `production` | `master` (production) | `nherve.dev` |
 | Non-draft pull request | Both, checks only | No upload | None |
 
 ## One-time migration
 
 Before enabling the GitHub deployment workflow:
 
-1. In the existing `blog-hervem` Pages project, set the production branch to `production`. This is a Pages deployment label; releases are built from their tagged commit, and no Git production branch needs updating.
-2. Disable automatic production branch deployments and set automatic preview branch deployments to **None**. This prevents Cloudflare from building alongside GitHub. An existing Git-integrated project can receive Wrangler uploads after its automatic builds are disabled; do not delete or recreate the project. See [Cloudflare Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/#disable-automatic-deployments).
-3. Keep `nherve.dev` attached to this project. Keep `beta.nherve.dev` attached as a custom domain and update its proxied CNAME target to `master.blog-hervem.pages.dev`, replacing the old preview branch alias. See [custom domains on preview branches](https://developers.cloudflare.com/pages/how-to/custom-branch-aliases/).
+1. Keep the existing `blog-hervem` Pages production branch set to `master`. Release uploads use this Pages branch label while building the tagged commit. Pushes to Git `master` upload with the `beta` label instead; no Git branch named `beta` is required.
+2. Keep automatic production branch deployments disabled and automatic preview branch deployments set to **None**. Both settings were confirmed through the Cloudflare API during migration preparation. This prevents Cloudflare from building alongside GitHub. An existing Git-integrated project can receive Wrangler uploads after its automatic builds are disabled; do not delete or recreate the project. See [Cloudflare Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/#disable-automatic-deployments).
+3. Keep `nherve.dev` attached to this project with its CNAME targeting `blog-hervem.pages.dev`. Keep `beta.nherve.dev` attached as a custom domain and update its proxied CNAME target from `master.blog-hervem.pages.dev` to `beta.blog-hervem.pages.dev`. See [custom domains on preview branches](https://developers.cloudflare.com/pages/how-to/custom-branch-aliases/).
 4. Add the repository Actions secrets below. Create the API token in Cloudflare; enter its value directly into GitHub secrets, never into source files.
 
 | GitHub Actions secret | Value |
@@ -75,6 +75,6 @@ mise exec -- gh workflow run deploy.yml --ref master -f release_tag=2026.11.19.1
 
 The manual path checks out the tagged revision and validates its master ancestry, tag, and commit SHA. It uses the current `master` versions of `mise.toml`, `mise.lock`, and the validator, while building the historical content, theme revision, Hugo configuration, headers, and redirects. The run must still pass the production build. See [GitHub workflow trigger behavior](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#push).
 
-GitHub uploads beta with `--branch master` and production with `--branch production`, recording the checked-out commit SHA. The deployment run summary links to the uploaded version. New beta pushes cancel superseded beta runs; production uploads share a concurrency group without canceling a running release. GitHub concurrency keeps at most one pending run, so push release tags individually and wait for each deployment to finish.
+GitHub uploads beta with `--branch beta` and production with `--branch master`, matching the existing Pages production branch and recording the checked-out commit SHA. The deployment run summary links to the uploaded version. New beta pushes cancel superseded beta runs; production uploads share a concurrency group without canceling a running release. GitHub concurrency keeps at most one pending run, so push release tags individually and wait for each deployment to finish.
 
 After cutover, verify the first master deployment at `beta.nherve.dev`, then a tagged release at `nherve.dev`. Confirm the expected site title, post visibility, headers, redirects, and deployed commit in the Actions run and Cloudflare dashboard. If a release needs rolling back, tag the desired older master commit with a new CalVer tag and push it.
