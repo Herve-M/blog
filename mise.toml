@@ -1,5 +1,5 @@
 [tools]
-hugo-extended = "0.160.1"
+hugo-extended = "0.169.0"
 node = "26.13.1"
 "npm:wrangler" = "4.164.0"
 gh = "2.105.0"

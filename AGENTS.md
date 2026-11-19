@@ -10,7 +10,7 @@ This repository contains the Hugo blog for `https://nherve.dev`. It uses Hugo Ex
 
 ## Dependency setup
 
-Install mise and Git LFS before setting up the repository. Use mise to manage external development tools; `mise.toml` and `mise.lock` are the sources of truth for their versions. Hugo Extended is currently pinned to `0.160.1`. Add additional external development tools through mise rather than relying on untracked global installations. Keep the configuration and lockfile consistent when changing dependencies.
+Install mise and Git LFS before setting up the repository. Use mise to manage external development tools; `mise.toml` and `mise.lock` are the sources of truth for their versions. Hugo Extended is currently pinned to `0.169.0`. Add additional external development tools through mise rather than relying on untracked global installations. Keep the configuration and lockfile consistent when changing dependencies.
 
 Run these commands from the repository root:
 
