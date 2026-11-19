@@ -1,6 +1,8 @@
 # Repository overrides; requires a trusted project and a new Codex session.
 # Cloudflare MCP may require plugin installation and OAuth authentication.
 
+default_permissions = "blog"
+
 [plugins."cloudflare@openai-curated-remote"]
 enabled = true
 
